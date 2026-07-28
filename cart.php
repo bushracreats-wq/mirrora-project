@@ -18,15 +18,27 @@ if (isset($_GET['action'])) {
                 $_SESSION['cart'] = [];
             }
             
+            // <-- FIX: Database ke 'discount_percent' column se calculation -->
+            $original_price = floatval($product['price']);
+            $discount_percent = isset($product['discount_percent']) ? floatval($product['discount_percent']) : 0;
+            
+            $final_price = $original_price;
+            
+            if ($discount_percent > 0) {
+                $final_price = $original_price - ($original_price * $discount_percent / 100);
+            }
+            
             if (isset($_SESSION['cart'][$id])) {
                 $_SESSION['cart'][$id]['quantity'] += 1;
             } else {
                 $image_col = isset($product['images']) ? $product['images'] : '';
                 $_SESSION['cart'][$id] = [
-                    'name'     => $product['name'],
-                    'price'    => $product['price'],
-                    'image'    => $image_col,
-                    'quantity' => 1
+                    'name'           => $product['name'],
+                    'price'          => $final_price,     // Calculated Discounted Price
+                    'original_price' => $original_price,  // Original Price for cut-off view
+                    'discount_percent'=> $discount_percent, // Percentage for reference
+                    'image'          => $image_col,
+                    'quantity'       => 1
                 ];
             }
         }
@@ -92,7 +104,19 @@ include 'header.php';
                                         </div>
                                     </div>
                                 </td>
-                                <td class="text-nowrap" style="font-size: 0.9rem;">Rs. <?php echo number_format($item['price']); ?></td>
+                                
+                                <!-- Price Column with Cut-off Effect -->
+                                <td class="text-nowrap" style="font-size: 0.9rem;">
+                                    <?php if (isset($item['original_price']) && isset($item['discount_percent']) && $item['discount_percent'] > 0): ?>
+                                        <span class="fw-bold text-danger">Rs. <?php echo number_format($item['price']); ?></span>
+                                        <span class="badge bg-danger ms-1" style="font-size: 0.7rem;"><?php echo $item['discount_percent']; ?>% OFF</span>
+                                        <br>
+                                        <del class="text-muted small">Rs. <?php echo number_format($item['original_price']); ?></del>
+                                    <?php else: ?>
+                                        Rs. <?php echo number_format($item['price']); ?>
+                                    <?php endif; ?>
+                                </td>
+
                                 <td>
                                     <form action="cart.php?action=update&id=<?php echo $id; ?>" method="POST" class="d-flex">
                                         <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1" class="form-control form-control-sm text-center" style="width: 55px;" onchange="this.form.submit()">

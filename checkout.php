@@ -42,7 +42,8 @@ if (isset($_POST['place_order'])) {
         // Order successful hone ke baad cart ko clear kar dein
         unset($_SESSION['cart']);
         
-        echo "<script>alert('Order successfully placed! Your Order ID is #$order_id'); window.location.href='index.php';</script>";
+        // <-- FIX: Ab yeh direct order_success.php par bhejega Order ID ke sath -->
+        echo "<script>window.location.href='order_success.php?order_id=$order_id';</script>";
         exit;
     } else {
         $error = "Something went wrong. Please try again!";

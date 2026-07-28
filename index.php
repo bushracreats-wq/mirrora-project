@@ -28,7 +28,7 @@ $cats = ['Men', 'Women', 'Kids', 'Jewelry', 'Shoes'];
 
         <!-- Slide 2 -->
         <div class="carousel-item">
-            <img src="assets/images/baner9.png" class="d-block w-100 banner-img" alt="Banner 2">
+            <img src="assets/images/bannew9.png" class="d-block w-100 banner-img" alt="Banner 2">
             <div class="carousel-caption text-start">
                 <span class="badge bg-light text-dark mb-3">NEW COLLECTION</span>
                 <h1>Explore Men & Women Styles</h1>
@@ -40,7 +40,7 @@ $cats = ['Men', 'Women', 'Kids', 'Jewelry', 'Shoes'];
 
         <!-- Slide 3 -->
         <div class="carousel-item">
-            <img src="assets/images/baner10.png" class="d-block w-100 banner-img" alt="Banner 3">
+            <img src="assets/images/bannew10.png" class="d-block w-100 banner-img" alt="Banner 3">
             <div class="carousel-caption text-start">
                 <span class="badge bg-warning text-dark mb-3">SALE 20% OFF</span>
                 <h1>Kids & Jewelry Collection</h1>

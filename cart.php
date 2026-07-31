@@ -18,7 +18,11 @@ if (isset($_GET['action'])) {
                 $_SESSION['cart'] = [];
             }
             
-            // <-- FIX: Database ke 'discount_percent' column se calculation -->
+            // Get Color & Size from URL / GET parameters
+            $selected_color = isset($_GET['color']) && !empty($_GET['color']) ? trim($_GET['color']) : 'N/A';
+            $selected_size = isset($_GET['size']) && !empty($_GET['size']) ? trim($_GET['size']) : 'N/A';
+
+            // Discount percent calculation
             $original_price = floatval($product['price']);
             $discount_percent = isset($product['discount_percent']) ? floatval($product['discount_percent']) : 0;
             
@@ -30,15 +34,20 @@ if (isset($_GET['action'])) {
             
             if (isset($_SESSION['cart'][$id])) {
                 $_SESSION['cart'][$id]['quantity'] += 1;
+                // Update selected color and size if re-added
+                $_SESSION['cart'][$id]['color'] = $selected_color;
+                $_SESSION['cart'][$id]['size']  = $selected_size;
             } else {
                 $image_col = isset($product['images']) ? $product['images'] : '';
                 $_SESSION['cart'][$id] = [
-                    'name'           => $product['name'],
-                    'price'          => $final_price,     // Calculated Discounted Price
-                    'original_price' => $original_price,  // Original Price for cut-off view
-                    'discount_percent'=> $discount_percent, // Percentage for reference
-                    'image'          => $image_col,
-                    'quantity'       => 1
+                    'name'            => $product['name'],
+                    'price'           => $final_price,         // Calculated Discounted Price
+                    'original_price'  => $original_price,      // Original Price for cut-off view
+                    'discount_percent'=> $discount_percent,    // Percentage for reference
+                    'image'           => $image_col,
+                    'quantity'        => 1,
+                    'color'           => $selected_color,      // Saved selected Color
+                    'size'            => $selected_size        // Saved selected Size
                 ];
             }
         }
@@ -101,6 +110,16 @@ include 'header.php';
                                         <img src="assets/images/<?php echo $item['image']; ?>" alt="" class="img-fluid rounded me-2 me-md-3 flex-shrink-0" style="width: 50px; height: 50px; object-fit: cover;">
                                         <div>
                                             <h6 class="mb-0 fw-bold fs-6 text-wrap" style="font-size: 0.9rem;"><?php echo $item['name']; ?></h6>
+                                            
+                                            <!-- Color & Size Display in Cart -->
+                                            <?php if ((isset($item['color']) && $item['color'] !== 'N/A') || (isset($item['size']) && $item['size'] !== 'N/A')): ?>
+                                                <small class="text-muted d-block mt-1" style="font-size: 0.78rem;">
+                                                    <?php echo isset($item['color']) && $item['color'] !== 'N/A' ? '<strong>Color:</strong> ' . htmlspecialchars($item['color']) : ''; ?>
+                                                    <?php echo (isset($item['color']) && $item['color'] !== 'N/A' && isset($item['size']) && $item['size'] !== 'N/A') ? ' | ' : ''; ?>
+                                                    <?php echo isset($item['size']) && $item['size'] !== 'N/A' ? '<strong>Size:</strong> ' . htmlspecialchars($item['size']) : ''; ?>
+                                                </small>
+                                            <?php endif; ?>
+
                                         </div>
                                     </div>
                                 </td>

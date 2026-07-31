@@ -20,21 +20,31 @@ if (isset($_POST['place_order'])) {
     // Grand Total aur Products string calculate karein
     $total_amount = 0;
     $products_details_array = [];
+    $colors_array = [];
+    $sizes_array = [];
     
     foreach ($_SESSION['cart'] as $item) {
         $subtotal = $item['price'] * $item['quantity'];
         $total_amount += $subtotal;
         
-        // Product ka naam, quantity aur price aik string mein jama kar rahe hain
-        $products_details_array[] = $item['name'] . " (Qty: " . $item['quantity'] . ", Price: " . $item['price'] . ")";
+        $item_color = isset($item['color']) ? $item['color'] : 'N/A';
+        $item_size = isset($item['size']) ? $item['size'] : 'N/A';
+
+        $colors_array[] = $item_color;
+        $sizes_array[] = $item_size;
+        
+        // Product ka naam, quantity, price, color aur size aik string mein jama kar rahe hain
+        $products_details_array[] = $item['name'] . " (Qty: " . $item['quantity'] . ", Price: " . $item['price'] . ", Color: " . $item_color . ", Size: " . $item_size . ")";
     }
     
     // Saare products ko aik text mein convert kar liya
     $order_products_str = mysqli_real_escape_string($conn, implode(" | ", $products_details_array));
+    $product_color_str = mysqli_real_escape_string($conn, implode(", ", $colors_array));
+    $product_size_str = mysqli_real_escape_string($conn, implode(", ", $sizes_array));
 
-    // Orders table mein data insert karein
-    $insert_order = "INSERT INTO orders (customer_name, email, phone, address, city, payment_method, total_amount, order_products, order_date) 
-                     VALUES ('$name', '$email', '$phone', '$address', '$city', '$payment_method', '$total_amount', '$order_products_str', NOW())";
+    // Orders table mein data insert karein (including color and size columns)
+    $insert_order = "INSERT INTO orders (customer_name, email, phone, address, city, payment_method, total_amount, order_products, product_color, product_size, order_date) 
+                     VALUES ('$name', '$email', '$phone', '$address', '$city', '$payment_method', '$total_amount', '$order_products_str', '$product_color_str', '$product_size_str', NOW())";
     
     if (mysqli_query($conn, $insert_order)) {
         $order_id = mysqli_insert_id($conn);
@@ -42,7 +52,6 @@ if (isset($_POST['place_order'])) {
         // Order successful hone ke baad cart ko clear kar dein
         unset($_SESSION['cart']);
         
-        // <-- FIX: Ab yeh direct order_success.php par bhejega Order ID ke sath -->
         echo "<script>window.location.href='order_success.php?order_id=$order_id';</script>";
         exit;
     } else {
@@ -113,6 +122,12 @@ include 'header.php';
                                     <td>
                                         <h6 class="mb-0 fw-bold" style="font-size: 0.85rem;"><?php echo $item['name']; ?></h6>
                                         <small class="text-muted">Qty: <?php echo $item['quantity']; ?></small>
+                                        <?php if(isset($item['color']) || isset($item['size'])): ?>
+                                            <br><small class="text-secondary" style="font-size: 0.75rem;">
+                                                <?php echo isset($item['color']) ? 'Color: '.$item['color'] : ''; ?> 
+                                                <?php echo isset($item['size']) ? '| Size: '.$item['size'] : ''; ?>
+                                            </small>
+                                        <?php endif; ?>
                                     </td>
                                     <td class="text-end fw-bold text-nowrap" style="font-size: 0.85rem;">Rs. <?php echo number_format($subtotal); ?></td>
                                 </tr>

@@ -116,6 +116,49 @@
             sessionStorage.setItem('popupShown', 'true');
         }
     });
+   
+document.addEventListener("DOMContentLoaded", function() {
+    var myVideo = document.getElementById("bannerVideo");
+    var myCarouselElem = document.getElementById("mainCarousel");
+    
+    if (myVideo && myCarouselElem) {
+        // Carousel instance banayein (interval 3 seconds rakhein images ke liye)
+        var myCarousel = new bootstrap.Carousel(myCarouselElem, {
+            interval: 3000,
+            wrap: true
+        });
+// Jab video bilkul aakhir tak poori chal jaye, tab hi carousel agli image par jaye aur images ko mazeed aage na chalaye
+        myVideo.addEventListener('ended', function() {
+            myCarousel.next();
+            myCarousel.pause(); // Yahan timer rok diya taake video ke baad banner par ja kar slider ruk jaye
+        });
+        // Shuru mein carousel ko pause rakhein taake video aram se chal sake
+        myCarousel.pause();
+
+        // Jab video chal rahi ho, tab carousel hargiz na chale
+        myVideo.addEventListener('play', function() {
+            myCarousel.pause();
+        });
+
+        // Jab video bilkul aakhir tak poori chal jaye, tab hi carousel agli image par jaye
+        myVideo.addEventListener('ended', function() {
+            myCarousel.next();
+            myCarousel.cycle(); // Ab images ke liye timer chala dein
+        });
+
+        // Jab wapas ghoom kar video wali slide par aaye, toh video shuru se play ho aur timer pause ho jaye
+        myCarouselElem.addEventListener('slid.bs.carousel', function (e) {
+            var activeItem = e.relatedTarget;
+            var videoInSlide = activeItem.querySelector('video');
+            if (videoInSlide) {
+                videoInSlide.currentTime = 0;
+                videoInSlide.play();
+                myCarousel.pause();
+            }
+        });
+    }
+});
+
 </script>
 </html>
 

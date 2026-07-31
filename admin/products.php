@@ -15,7 +15,22 @@ $edit_price = "";
 $edit_discount = "";
 $edit_image = "";
 
-// 1. Add or Update Product Logic
+// 1. Edit Fetch Logic
+if (isset($_GET['edit'])) {
+    $edit_mode = true;
+    $id = intval($_GET['edit']);
+    $res = mysqli_query($conn, "SELECT * FROM products WHERE id = $id");
+    if ($res && $row = mysqli_fetch_assoc($res)) {
+        $edit_id = $row['id'];
+        $edit_name = $row['name'];
+        $edit_category = $row['category'];
+        $edit_price = $row['price'];
+        $edit_discount = $row['discount_percent'];
+        $edit_image = $row['images'];
+    }
+}
+
+// 2. Add or Update Product Logic
 if (isset($_POST['save_product'])) {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $category = mysqli_real_escape_string($conn, $_POST['category']);
@@ -34,41 +49,50 @@ if (isset($_POST['save_product'])) {
         }
     }
 
-    if (isset($_POST['product_id']) && !empty($_POST['product_id'])) {
-        $id = intval($_POST['product_id']);
-        $sql = "UPDATE products SET name='$name', category='$category', price='$price', discount_percent='$discount_percent', images='$image_name' WHERE id=$id";
+    // Capture ID from URL query string or hidden form field safely
+    $product_id = 0;
+    if (isset($_GET['edit']) && !empty($_GET['edit'])) {
+        $product_id = intval($_GET['edit']);
+    } elseif (isset($_POST['product_id']) && !empty($_POST['product_id'])) {
+        $product_id = intval($_POST['product_id']);
+    }
+
+    if ($product_id > 0) {
+        // UPDATE QUERY
+        $sql = "UPDATE products SET name='$name', category='$category', price='$price', discount_percent='$discount_percent', images='$image_name' WHERE id=$product_id";
         if (mysqli_query($conn, $sql)) {
-            $msg = "<div class='alert alert-success'>Product updated successfully!</div>";
+            header("Location: products.php?msg=updated");
+            exit();
+        } else {
+            $msg = "<div class='alert alert-danger'>Error updating product: " . mysqli_error($conn) . "</div>";
         }
     } else {
+        // INSERT QUERY
         $sql = "INSERT INTO products (name, category, price, discount_percent, images) VALUES ('$name', '$category', '$price', '$discount_percent', '$image_name')";
         if (mysqli_query($conn, $sql)) {
-            $msg = "<div class='alert alert-success'>Product added successfully!</div>";
+            header("Location: products.php?msg=added");
+            exit();
+        } else {
+            $msg = "<div class='alert alert-danger'>Error adding product: " . mysqli_error($conn) . "</div>";
         }
     }
 }
 
-// 2. Delete Product Logic
+// Success Messages Handler
+if (isset($_GET['msg'])) {
+    if ($_GET['msg'] == 'updated') {
+        $msg = "<div class='alert alert-success'>Product updated successfully!</div>";
+    } elseif ($_GET['msg'] == 'added') {
+        $msg = "<div class='alert alert-success'>Product added successfully!</div>";
+    }
+}
+
+// 3. Delete Product Logic
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     mysqli_query($conn, "DELETE FROM products WHERE id = $id");
     header("Location: products.php");
     exit();
-}
-
-// 3. Edit Fetch Logic
-if (isset($_GET['edit'])) {
-    $edit_mode = true;
-    $id = intval($_GET['edit']);
-    $res = mysqli_query($conn, "SELECT * FROM products WHERE id = $id");
-    if ($row = mysqli_fetch_assoc($res)) {
-        $edit_id = $row['id'];
-        $edit_name = $row['name'];
-        $edit_category = $row['category'];
-        $edit_price = $row['price'];
-        $edit_discount = $row['discount_percent'];
-        $edit_image = $row['images'];
-    }
 }
 
 // 4. Category Filter Logic
@@ -122,10 +146,9 @@ if ($selected_category !== 'All') {
 
         <?php echo $msg; ?>
 
-        <!-- Add / Edit Product Form Card -->
         <div class="card border-0 shadow-sm p-4 mb-5 bg-white rounded-4">
             <h5 class="fw-bold mb-3"><?php echo $edit_mode ? 'Edit Product ID #' . $edit_id : 'Add New Product'; ?></h5>
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" action="products.php<?php echo $edit_mode ? '?edit=' . $edit_id : ''; ?>" enctype="multipart/form-data">
                 <input type="hidden" name="product_id" value="<?php echo $edit_id; ?>">
                 <input type="hidden" name="old_image" value="<?php echo $edit_image; ?>">
 
@@ -171,7 +194,6 @@ if ($selected_category !== 'All') {
             </form>
         </div>
 
-        <!-- Category Filter Tabs with Anchor to scroll down smoothly -->
         <div id="product-table" class="mb-3 d-flex flex-wrap gap-2">
             <a href="products.php?category=All#product-table" class="btn btn-sm <?php echo $selected_category=='All' ? 'btn-dark' : 'btn-outline-dark'; ?>">All Products</a>
             <a href="products.php?category=Women#product-table" class="btn btn-sm <?php echo $selected_category=='Women' ? 'btn-dark' : 'btn-outline-dark'; ?>">Women</a>
@@ -181,7 +203,6 @@ if ($selected_category !== 'All') {
             <a href="products.php?category=Shoes#product-table" class="btn btn-sm <?php echo $selected_category=='Shoes' ? 'btn-dark' : 'btn-outline-dark'; ?>">Shoes</a>
         </div>
 
-        <!-- Products Table View with Actions -->
         <div class="card border-0 shadow-sm p-3 bg-white rounded-4">
             <div class="table-responsive">
                 <table class="table align-middle mb-0">
@@ -197,7 +218,7 @@ if ($selected_category !== 'All') {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (mysqli_num_rows($result) > 0): ?>
+                        <?php if ($result && mysqli_num_rows($result) > 0): ?>
                             <?php while($row = mysqli_fetch_assoc($result)): ?>
                             <tr>
                                 <td>#<?php echo $row['id']; ?></td>

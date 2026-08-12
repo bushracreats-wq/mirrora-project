@@ -25,7 +25,10 @@ include 'config.php';
                     
                     <!-- Image Wrapper with Relative Positioning -->
                     <div class="position-relative overflow-hidden product-img-wrapper" style="position: relative !important;">
-                        
+                       <!-- Wishlist Pencil-Line Icon -->
+<a href="wishlist.php?action=add&id=<?php echo $row['id']; ?>" class="wishlist-icon-btn" title="Add to Wishlist">
+    <i class="far fa-heart"></i>
+</a> 
                         <!-- Discount Badge -->
                         <?php 
                         if (isset($row['discount_percent']) && $row['discount_percent'] > 0) {

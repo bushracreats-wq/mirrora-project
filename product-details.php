@@ -17,7 +17,7 @@ if (!$product) {
 ?>
 
 <div class="container my-5">
-    <div class="row align-items-center">
+    <div class="row align-items-center mb-5">
         <!-- Product Image Section -->
         <div class="col-lg-5 mb-4 mb-lg-0 text-center">
             <div class="card border-0 shadow-sm p-3 bg-light">
@@ -104,6 +104,44 @@ if (!$product) {
                     </a>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- CUSTOMER REVIEWS SECTION -->
+    <div class="row mt-5 pt-4 border-top">
+        <div class="col-lg-8">
+            <h4 class="fw-bold mb-4">Customer Reviews</h4>
+            
+            <?php
+            $rev_query = "SELECT * FROM reviews WHERE product_id = $id AND status = 'approved' ORDER BY id DESC";
+            $rev_result = mysqli_query($conn, $rev_query);
+
+            if ($rev_result && mysqli_num_rows($rev_result) > 0) {
+                while ($rev = mysqli_fetch_assoc($rev_result)) {
+                    echo '<div class="card border-0 shadow-sm p-3 mb-3 bg-light">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <h6 class="fw-bold m-0 text-dark">' . htmlspecialchars($rev['user_name']) . '</h6>
+                                <span class="text-warning small">';
+                    
+                    // Rating stars generation
+                    $rating = intval($rev['rating']);
+                    for ($i = 1; $i <= 5; $i++) {
+                        if ($i <= $rating) {
+                            echo '<i class="fas fa-star"></i>';
+                        } else {
+                            echo '<i class="far fa-star"></i>';
+                        }
+                    }
+
+                    echo '      </span>
+                            </div>
+                            <p class="text-muted mb-0" style="font-size: 0.9rem;">' . htmlspecialchars($rev['review_text']) . '</p>
+                          </div>';
+                }
+            } else {
+                echo '<p class="text-muted fst-italic">Is product par abhi tak koi approved review mojood nahi hai.</p>';
+            }
+            ?>
         </div>
     </div>
 </div>

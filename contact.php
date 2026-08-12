@@ -91,33 +91,45 @@ if (isset($_POST['submit_contact'])) {
                     <p class="small text-light opacity-75 mb-0" style="font-size: 0.85rem; line-height: 1.5;">Hamare virtual dressing room system active hain. Response and processing time under 2 minutes hai.</p>
                 </div>
                 
-                <!-- Card 2: Contact Methods Hub (Clean Ivory White Contrast Grid) -->
+                <!-- Card 2: Contact Methods Hub (Clickable Details) -->
                 <div class="p-4 rounded-4 shadow-sm bg-white border-0" style="border: 1px solid #f5e6e6 !important; box-shadow: 0 10px 30px rgba(114, 47, 37, 0.04) !important;">
                     <h5 class="fw-bold mb-4 text-dark opacity-75" style="font-family: 'Playfair Display', serif; font-size: 1.15rem;">Direct Hub Details</h5>
                     
-                    <div class="d-flex align-items-center mb-3">
+                    <!-- Official Email (Clickable Mailto Link) -->
+                    <a href="mailto:bushracreats@gmail.com" class="d-flex align-items-center mb-3 text-decoration-none contact-card-hover p-2 rounded-3 transition">
                         <div class="p-2.5 rounded-3 me-3 text-white d-flex align-items-center justify-content-center flex-shrink-0" style="background: #722F37; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(114, 47, 55, 0.25);"><i class="fas fa-envelope fa-fw"></i></div>
                         <div>
                             <small class="d-block text-muted fw-bold" style="font-size: 0.75rem;">Official Email</small>
-                            <span class="text-dark fw-medium small">support@mirrora.com</span>
+                            <span class="text-dark fw-medium small">bushracreats@gmail.com</span>
                         </div>
-                    </div>
+                    </a>
                     
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="p-2.5 rounded-3 me-3 text-white d-flex align-items-center justify-content-center flex-shrink-0" style="background: #b8323d; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(184, 50, 61, 0.25);"><i class="fas fa-phone-volume fa-fw"></i></div>
+                    <!-- Helpline / WhatsApp (Clickable) -->
+                    <a href="https://wa.me/923101205366" target="_blank" class="d-flex align-items-center mb-3 text-decoration-none contact-card-hover p-2 rounded-3 transition">
+                        <div class="p-2.5 rounded-3 me-3 text-white d-flex align-items-center justify-content-center flex-shrink-0" style="background: #b8323d; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(184, 50, 61, 0.25);"><i class="fab fa-whatsapp fa-fw"></i></div>
                         <div>
                             <small class="d-block text-muted fw-bold" style="font-size: 0.75rem;">Helpline / WhatsApp</small>
-                            <span class="text-dark fw-medium small">+92 300 1234567</span>
+                            <span class="text-dark fw-medium small">0310 1205366</span>
                         </div>
-                    </div>
+                    </a>
+
+                    <!-- LinkedIn Profile (Clickable) -->
+                    <a href="https://www.linkedin.com/in/bushra-creates/" target="_blank" class="d-flex align-items-center mb-3 text-decoration-none contact-card-hover p-2 rounded-3 transition">
+                        <div class="p-2.5 rounded-3 me-3 text-white d-flex align-items-center justify-content-center flex-shrink-0" style="background: #0077b5; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(0, 119, 181, 0.25);"><i class="fab fa-linkedin-in fa-fw"></i></div>
+                        <div>
+                            <small class="d-block text-muted fw-bold" style="font-size: 0.75rem;">Professional Profile</small>
+                            <span class="text-dark fw-medium small">linkedin.com/in/bushra-creates</span>
+                        </div>
+                    </a>
                     
-                    <div class="d-flex align-items-center">
+                    <!-- Headquarters (Clickable Google Maps link) -->
+                    <a href="https://maps.google.com/?q=Gulzar-e-Hijri,+Scheme+33,+Karachi" target="_blank" class="d-flex align-items-center text-decoration-none contact-card-hover p-2 rounded-3 transition">
                         <div class="p-2.5 rounded-3 me-3 text-white d-flex align-items-center justify-content-center flex-shrink-0" style="background: #222; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);"><i class="fas fa-location-dot fa-fw"></i></div>
                         <div>
                             <small class="d-block text-muted fw-bold" style="font-size: 0.75rem;">Headquarters</small>
                             <span class="text-dark fw-medium small">Gulzar-e-Hijri, Scheme 33, Karachi, Pakistan</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
             </div>
@@ -174,6 +186,13 @@ if (isset($_POST['submit_contact'])) {
         opacity: 0.95;
         transform: translateY(-1px);
         box-shadow: 0 6px 20px rgba(114, 47, 55, 0.3);
+    }
+    .contact-card-hover {
+        transition: all 0.25s ease-in-out;
+    }
+    .contact-card-hover:hover {
+        background-color: #fff5f5 !important;
+        transform: translateX(4px);
     }
 </style>
 <?php 

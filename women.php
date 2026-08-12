@@ -22,7 +22,10 @@ include 'config.php';
         ?>
             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                 <div class="card h-100 shadow-sm product-card">
-                    
+                    <!-- Wishlist Pencil-Line Icon -->
+<a href="wishlist.php?action=add&id=<?php echo $row['id']; ?>" class="wishlist-icon-btn" title="Add to Wishlist">
+    <i class="far fa-heart"></i>
+</a>
                     <!-- Image Wrapper with Relative Positioning -->
                     <div class="position-relative overflow-hidden product-img-wrapper" style="position: relative !important;">
                         

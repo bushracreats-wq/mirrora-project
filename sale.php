@@ -12,10 +12,9 @@ include 'config.php';
 
     <div class="row">
         <?php
-        // Query fetch all products (both discounted and non-discounted)
-      // Is query se database se mix products uth kar aayein ge (random order mein)
-$query = "SELECT * FROM products ORDER BY RAND() LIMIT 6";
-        $result = mysqli_query($conn, $query);
+        // Query fetch all products (random order mein)
+      $query = "SELECT * FROM products WHERE discount_percent > 0";
+$result = mysqli_query($conn, $query);
 
         if ($result && mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -56,15 +55,34 @@ $query = "SELECT * FROM products ORDER BY RAND() LIMIT 6";
                                 <?php endif; ?>
                             </div>
                             
-                            <!-- Customer Comments / Reviews Section -->
-                            <div class="bg-light p-3 rounded mb-3 mt-auto border-start border-3" style="border-color: #800020 !important;">
-                                <p class="small text-muted mb-1 fst-italic">"Absolutely love the fabric and stitching! Received so many compliments at the event."</p>
-                                <span class="small fw-bold text-dark">- Ayesha Khan <span class="text-warning">★★★★★</span></span>
+                            <!-- Dynamic Customer Comments / Reviews Section -->
+                            <div class="mb-3 mt-auto">
+                                <?php
+                                // Sirf wahi reviews fetch honge jo is product ke hain aur admin ne 'approved' kiye hain
+                                $rev_query = mysqli_query($conn, "SELECT * FROM reviews WHERE product_id = $id AND status = 'approved' ORDER BY id DESC");
+                                
+                                if ($rev_query && mysqli_num_rows($rev_query) > 0) {
+                                    while ($rev = mysqli_fetch_assoc($rev_query)) {
+                                        // Rating ke hisaab se stars generate karna
+                                        $rating = intval($rev['rating']);
+                                        $stars = str_repeat("★", $rating);
+                                        
+                                        echo '<div class="bg-light p-3 rounded mb-2 border-start border-3" style="border-color: #800020 !important;">
+                                                <p class="small text-muted mb-1 fst-italic">"' . htmlspecialchars($rev['review_text']) . '"</p>
+                                                <span class="small fw-bold text-dark">- ' . htmlspecialchars($rev['user_name']) . ' <span class="text-warning">' . $stars . '</span></span>
+                                              </div>';
+                                    }
+                                } else {
+                                    echo '<div class="bg-light p-3 rounded text-center">
+                                            <p class="small text-muted mb-0 fst-italic">No reviews yet for this product.</p>
+                                          </div>';
+                                }
+                                ?>
                             </div>
 
                             <!-- Add to Cart Button -->
                             <a href="cart.php?action=add&id=<?php echo $id; ?>" class="btn btn-dark w-100 rounded-pill py-2 fw-bold" style="background-color: #800020; border: none;">
-                                Add to Bag <id class="fas fa-shopping-bag ms-1"></id>
+                                Add to Bag <i class="fas fa-shopping-bag ms-1"></i>
                             </a>
                         </div>
                     </div>

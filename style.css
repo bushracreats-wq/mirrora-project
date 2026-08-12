@@ -444,3 +444,115 @@ body {
     padding-left: 0.25rem !important;
     padding-right: 0.25rem !important;
 }
+.slide1, .slide2, .slide3 {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100% !important;
+    min-height: 250px; /* Mobile ke liye height adjust ki */
+}
+
+@media (min-width: 768px) {
+    .slide1, .slide2, .slide3 {
+        min-height: 420px; /* Desktop ke liye wapas 420px */
+    }
+}
+
+
+/* --- Responsive Wishlist Pencil-Line Icon CSS --- */
+.wishlist-icon-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent !important;
+    border: none !important;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.8));
+    transition: transform 0.2s ease, color 0.2s ease;
+    z-index: 99;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.wishlist-icon-btn:hover {
+    transform: scale(1.15);
+    color: #710701 !important;
+}
+
+.wishlist-icon-btn i {
+    font-size: 18px;
+    color: inherit;
+}
+
+/* Mobile Screens ke liye responsive adjustments */
+@media (max-width: 768px) {
+    .wishlist-icon-btn {
+        top: 8px;
+        right: 8px;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .wishlist-icon-btn i {
+        font-size: 15px;
+    }
+}
+    .wishlist-icon-btn i {
+        font-size: 15px; /* Choti screens par icon ka size thoda adjust ho jaye ga */
+    }
+}
+/* ================= INTRO VIDEO STYLES & RESPONSIVENESS ================= */
+#intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mobile aur desktop dono par video stretch ya distort nahi hogi */
+}
+
+#skip-btn {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+#skip-btn:hover {
+    background: #800020;
+    border-color: #800020;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    #skip-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 8px 18px;
+        font-size: 14px;
+    }
+}

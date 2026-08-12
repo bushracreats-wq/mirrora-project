@@ -1,0 +1,314 @@
+[2026-08-08 06:50:45] Starting AI Try-On Generation
+{
+    "provider": "fashn",
+    "api_key_configured": false,
+    "user_image_path": "assets/images/1784390842_men1.jpg",
+    "product_image_path": "assets/images/1784391048_men2.jpg",
+    "category": "Men"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:50:45] API Key Missing Error: AI Virtual Try-On API Key is not configured. Please set AI_TRYON_API_KEY in config.php or .env file to generate real AI clothing try-ons.
+--------------------------------------------------------------------------------
+[2026-08-08 06:50:58] Starting AI Try-On Generation
+{
+    "provider": "fashn",
+    "api_key_configured": true,
+    "user_image_path": "assets/images/1784390842_men1.jpg",
+    "product_image_path": "assets/images/1784391048_men2.jpg",
+    "category": "Men"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:51:02] Generated temporary public URL via tmpfiles.org: https://tmpfiles.org/dl/wFwoFv4XCBgZ/1784390842_men1.jpg
+--------------------------------------------------------------------------------
+[2026-08-08 06:51:03] Generated temporary public URL via tmpfiles.org: https://tmpfiles.org/dl/wtwJFz4SCGMD/1784391048_men2.jpg
+--------------------------------------------------------------------------------
+[2026-08-08 06:51:03] Calling Fashn.ai API Endpoint: https://api.fashn.ai/v1/run
+{
+    "category": "tops",
+    "user_url_type": "public_url",
+    "prod_url_type": "public_url"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:51:04] Fashn.ai API HTTP Status Code: 401 - {"error":"UnauthorizedAccess","message":"Unauthorized: Invalid token"}
+--------------------------------------------------------------------------------
+[2026-08-08 06:52:21] Received Try-On Request via POST
+{
+    "post_product_id": 50,
+    "post_product_image": "1784446185_wom5.jpg",
+    "files": "1784447606_wom11.jpg"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:52:21] Database fetched product row
+{
+    "id": "50",
+    "name": "Floral Bloom",
+    "category": "Women",
+    "price": "2300",
+    "description": "Floral bloom vibrant printed lawn shirt adorned with blossom motifs.",
+    "size": "Small, Medium, Large, XL",
+    "color": "Pink, Multi Floral",
+    "images": "1784446185_wom5.jpg",
+    "image": "",
+    "discount_percent": "0"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:52:21] Validated input images
+{
+    "user_file_path": "uploads/user_tryon_6a76d2253a2361.03812728_75888758.jpg",
+    "user_file_size": 36328,
+    "product_file_path": "assets/images/1784446185_wom5.jpg",
+    "product_file_size": 30975,
+    "category": "Women"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:52:21] Starting AI Try-On Generation
+{
+    "provider": "fashn",
+    "api_key_configured": false,
+    "user_image_path": "uploads/user_tryon_6a76d2253a2361.03812728_75888758.jpg",
+    "product_image_path": "assets/images/1784446185_wom5.jpg",
+    "category": "Women"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:52:21] API Key Missing Error: AI Virtual Try-On API Key is not configured. Please set AI_TRYON_API_KEY in config.php or .env file to generate real AI clothing try-ons.
+--------------------------------------------------------------------------------
+[2026-08-08 06:55:10] Starting AI Try-On Generation
+{
+    "provider": "fashn",
+    "api_key_configured": false,
+    "user_image_path": "assets/images/1784390842_men1.jpg",
+    "product_image_path": "assets/images/1784391048_men2.jpg",
+    "category": "Men"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:55:10] No external API key configured. Executing onboard VTON Fitting Engine.
+--------------------------------------------------------------------------------
+[2026-08-08 06:55:10] Executing Onboard VTON Fitting Engine for image-to-image garment transfer
+--------------------------------------------------------------------------------
+[2026-08-08 06:55:13] Onboard VTON Fitting Engine successfully generated result image: uploads/ai_tryon_result_6a76d2d035b3e5.40835392_1786172112.png
+--------------------------------------------------------------------------------
+[2026-08-08 06:56:23] Received Try-On Request via POST
+{
+    "post_product_id": 50,
+    "post_product_image": "1784446185_wom5.jpg",
+    "files": "1784445658_wom11.jpg"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:56:23] Database fetched product row
+{
+    "id": "50",
+    "name": "Floral Bloom",
+    "category": "Women",
+    "price": "2300",
+    "description": "Floral bloom vibrant printed lawn shirt adorned with blossom motifs.",
+    "size": "Small, Medium, Large, XL",
+    "color": "Pink, Multi Floral",
+    "images": "1784446185_wom5.jpg",
+    "image": "",
+    "discount_percent": "0"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:56:23] Validated input images
+{
+    "user_file_path": "uploads/user_tryon_6a76d3174a4c14.34131859_309dd860.jpg",
+    "user_file_size": 36328,
+    "product_file_path": "assets/images/1784446185_wom5.jpg",
+    "product_file_size": 30975,
+    "category": "Women"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:56:23] Starting AI Try-On Generation
+{
+    "provider": "fashn",
+    "api_key_configured": false,
+    "user_image_path": "uploads/user_tryon_6a76d3174a4c14.34131859_309dd860.jpg",
+    "product_image_path": "assets/images/1784446185_wom5.jpg",
+    "category": "Women"
+}
+--------------------------------------------------------------------------------
+[2026-08-08 06:56:23] No external API key configured. Executing onboard VTON Fitting Engine.
+--------------------------------------------------------------------------------
+[2026-08-08 06:56:23] Executing Onboard VTON Fitting Engine for image-to-image garment transfer
+--------------------------------------------------------------------------------
+[2026-08-08 06:56:23] Onboard VTON Fitting Engine successfully generated result image: uploads/ai_tryon_result_6a76d3177dc9f8.03109672_1786172183.png
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:06] Received Try-On Request via POST
+{
+    "post_product_id": 7,
+    "post_product_image": "1784391585_extra.jfif",
+    "files": "1784390842_men1.jpg"
+}
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:06] Database fetched product row
+{
+    "id": "7",
+    "name": "Casual Linen Shirt",
+    "category": "Men",
+    "price": "10000",
+    "description": "Breathable and lightweight casual linen shirt designed for everyday summer wear.",
+    "size": "Medium, Large, XL",
+    "color": "Blue, Beige, Grey",
+    "images": "1784391585_extra.jfif",
+    "image": "",
+    "discount_percent": "0"
+}
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:06] Validated input images
+{
+    "user_file_path": "uploads/user_tryon_6a79b422a5e618.49478146_662bb242.jpg",
+    "user_file_size": 122620,
+    "product_file_path": "assets/images/1784391585_extra.jfif",
+    "product_file_size": 25180,
+    "category": "Men"
+}
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:06] Starting AI Try-On Generation
+{
+    "provider": "fashn",
+    "api_key_configured": false,
+    "user_image_path": "uploads/user_tryon_6a79b422a5e618.49478146_662bb242.jpg",
+    "product_image_path": "assets/images/1784391585_extra.jfif",
+    "category": "Men"
+}
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:06] No external API key configured. Executing onboard VTON Fitting Engine.
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:06] Executing Onboard VTON Fitting Engine for image-to-image garment transfer
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:11] Onboard VTON Fitting Engine successfully generated result image: uploads/ai_tryon_result_6a79b4245e7c79.53225650_1786360868.png
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:37] Received Try-On Request via POST
+{
+    "post_product_id": 1,
+    "post_product_image": "1784390842_men1.jpg",
+    "files": "1784390515_men1.jpg"
+}
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:37] Database fetched product row
+{
+    "id": "1",
+    "name": "men's collection",
+    "category": "Men",
+    "price": "50000",
+    "description": "Exclusive men collection featuring versatile and stylish everyday wear.",
+    "size": "Small, Medium, Large, XL",
+    "color": "Assorted, Black, Navy",
+    "images": "1784390842_men1.jpg",
+    "image": "",
+    "discount_percent": "25"
+}
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:37] Validated input images
+{
+    "user_file_path": "uploads/user_tryon_6a79b4419a7f45.34176438_8eebeb16.jpg",
+    "user_file_size": 122620,
+    "product_file_path": "assets/images/1784390842_men1.jpg",
+    "product_file_size": 122620,
+    "category": "Men"
+}
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:37] Starting AI Try-On Generation
+{
+    "provider": "fashn",
+    "api_key_configured": false,
+    "user_image_path": "uploads/user_tryon_6a79b4419a7f45.34176438_8eebeb16.jpg",
+    "product_image_path": "assets/images/1784390842_men1.jpg",
+    "category": "Men"
+}
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:37] No external API key configured. Executing onboard VTON Fitting Engine.
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:37] Executing Onboard VTON Fitting Engine for image-to-image garment transfer
+--------------------------------------------------------------------------------
+[2026-08-10 11:21:51] Onboard VTON Fitting Engine successfully generated result image: uploads/ai_tryon_result_6a79b44c642a70.05503363_1786360908.png
+--------------------------------------------------------------------------------
+[2026-08-12 11:58:07] Received Try-On Request via POST
+{
+    "post_product_id": 7,
+    "post_product_image": "1784391585_extra.jfif",
+    "files": "1784390842_men1.jpg"
+}
+--------------------------------------------------------------------------------
+[2026-08-12 11:58:07] Database fetched product row
+{
+    "id": "7",
+    "name": "Casual Linen Shirt",
+    "category": "Men",
+    "price": "10000",
+    "description": "Breathable and lightweight casual linen shirt designed for everyday summer wear.",
+    "size": "Medium, Large, XL",
+    "color": "Blue, Beige, Grey",
+    "images": "1784391585_extra.jfif",
+    "image": "",
+    "discount_percent": "0"
+}
+--------------------------------------------------------------------------------
+[2026-08-12 11:58:07] Validated input images
+{
+    "user_file_path": "uploads/user_tryon_6a7c5fcf585e06.14889119_1229c822.jpg",
+    "user_file_size": 122620,
+    "product_file_path": "assets/images/1784391585_extra.jfif",
+    "product_file_size": 25180,
+    "category": "Men"
+}
+--------------------------------------------------------------------------------
+[2026-08-12 11:58:07] Starting AI Try-On Generation
+{
+    "provider": "fashn",
+    "api_key_configured": false,
+    "user_image_path": "uploads/user_tryon_6a7c5fcf585e06.14889119_1229c822.jpg",
+    "product_image_path": "assets/images/1784391585_extra.jfif",
+    "category": "Men"
+}
+--------------------------------------------------------------------------------
+[2026-08-12 11:58:07] No external API key configured. Executing onboard VTON Fitting Engine.
+--------------------------------------------------------------------------------
+[2026-08-12 11:58:07] Executing Onboard VTON Fitting Engine for image-to-image garment transfer
+--------------------------------------------------------------------------------
+[2026-08-12 11:58:10] Onboard VTON Fitting Engine successfully generated result image: uploads/ai_tryon_result_6a7c5fd05956a8.31522865_1786535888.png
+--------------------------------------------------------------------------------
+[2026-08-12 12:01:12] Received Try-On Request via POST
+{
+    "post_product_id": 71,
+    "post_product_image": "1784448213_wom19.jpg",
+    "files": "1784445264_wom6.jpg"
+}
+--------------------------------------------------------------------------------
+[2026-08-12 12:01:12] Database fetched product row
+{
+    "id": "71",
+    "name": "Chic Border",
+    "category": "Women",
+    "price": "30000",
+    "description": "Chic border detailed elegant shirt featuring stylish daman motifs.",
+    "size": "Small, Medium, Large",
+    "color": "White, Cream, Navy",
+    "images": "1784448213_wom19.jpg",
+    "image": "",
+    "discount_percent": "25"
+}
+--------------------------------------------------------------------------------
+[2026-08-12 12:01:12] Validated input images
+{
+    "user_file_path": "uploads/user_tryon_6a7c6088c09f93.58055482_6e01c02a.jpg",
+    "user_file_size": 28433,
+    "product_file_path": "assets/images/1784448213_wom19.jpg",
+    "product_file_size": 169538,
+    "category": "Women"
+}
+--------------------------------------------------------------------------------
+[2026-08-12 12:01:12] Starting AI Try-On Generation
+{
+    "provider": "fashn",
+    "api_key_configured": false,
+    "user_image_path": "uploads/user_tryon_6a7c6088c09f93.58055482_6e01c02a.jpg",
+    "product_image_path": "assets/images/1784448213_wom19.jpg",
+    "category": "Women"
+}
+--------------------------------------------------------------------------------
+[2026-08-12 12:01:12] No external API key configured. Executing onboard VTON Fitting Engine.
+--------------------------------------------------------------------------------
+[2026-08-12 12:01:12] Executing Onboard VTON Fitting Engine for image-to-image garment transfer
+--------------------------------------------------------------------------------
+[2026-08-12 12:01:19] Onboard VTON Fitting Engine successfully generated result image: uploads/ai_tryon_result_6a7c608f399158.14593846_1786536079.png
+--------------------------------------------------------------------------------

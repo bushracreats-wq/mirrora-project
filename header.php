@@ -10,6 +10,7 @@ $selected_region = isset($_GET['region']) ? htmlspecialchars($_GET['region']) : 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRRÓRA - Virtual Fitting Room</title>
@@ -87,7 +88,9 @@ $selected_region = isset($_GET['region']) ? htmlspecialchars($_GET['region']) : 
                 <li class="nav-item px-2 py-1 py-lg-0">
                     <a class="nav-link" href="about.php">About</a>
                 </li>
-
+<li class="nav-item">
+    <a class="nav-link" href="add_review.php">REVIEWS</a>
+</li>
                 <li class="nav-item px-2 py-1 py-lg-0">
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>

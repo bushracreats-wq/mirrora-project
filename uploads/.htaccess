@@ -1,0 +1,5 @@
+# Security: Prevent executing scripts in upload directory
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|cgi|asp|js)$">
+    Require all denied
+</FilesMatch>
+Options -ExecCGI
